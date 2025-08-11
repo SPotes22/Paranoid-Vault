@@ -143,6 +143,8 @@ Cómo funciona:
 
 * Con gps = 1e12 (1 billón de intentos por segundo, realista para un atacante con GPUs potentes y ataques offline)
 
+Copyright (C) 2025 Santiago Potes Giraldo
+
 Lo que faltaría para que esto sea “impenetrable”
 - Integrar QKD con tu gestor de contraseñas.
 - Usar One-Time Pads generados por el canal cuántico (cifrado perfecto).
