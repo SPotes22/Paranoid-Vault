@@ -1,6 +1,8 @@
-Paranoid Vault Patch
+# Paranoid Vault 
+Patch 2.0
 --------------------
-
+Gestor de contraseñas por CLI que usa Argon2id y AES para derivación y cifrado. Genera contraseñas únicas y seguras sin necesidad de sincronización en la nube. Ideal para desarrolladores y usuarios que buscan seguridad moderna y control total de sus credenciales.
+----
 This patch integrates Argon2id-based deterministic password derivation and Argon2-based key derivation/auth.
 It includes scripts:
 - initMaster.js
@@ -14,18 +16,44 @@ It includes scripts:
 
 DOES NOT INCLUDE 
 - .env (create your own secret schema)
-
+```
+SECRET_DICT=sol,luna,mar,cafe,brisa,montaña,rio,sombra,fuego,viento,noche,dia,camino,trazo,clave,nexo,puerta,llave,eco,pulso, etc...
+SECRET_BLOCKS=lorem,ipsum,example,supersecret, etc... 
+```
 Install:
+```
   npm install
-
+```
 Usage:
-  node initMaster.js "MyMasterPassword"
-  node storeEntry.js "site" "value" "MyMasterPassword"   # store encrypted value
-  node storeEntry.js "site" "" "MyMasterPassword" --derivable --site site.example --username user --length 20
-  node getEntry.js 1 "MyMasterPassword"
-  node getEntry.js 0 "MyMasterPassword" --list  # list
+* Iniciar Caja Fuerte
+```
+  node initMaster.js "MyMasterPassword" 
+``` 
+* Guardar una Contrasenia en la caja fuerte
+``` 
+node storeEntry.js "site" "Value" "MyMasterPassword" #simple storage
+node storeEntry.js "site" "value" "MyMasterPassword" --candado   # store encrypted value
+```
+* Guardar Paranoicamente (tamanio ajustable)
+```
+  node storeEntry.js "name" "thePassword" "MyMasterPassword" --derivable --site site.example --username user --length 20
+```
+* Visualizar contrasenias guardadas
+```
+  node getEntry.js 0 "MyMasterPassword" --list
+```
+* Visualizar Contrasenia Por id
+```
+  node getEntry.js id "MyMasterPassword"
+```
+* Exportar Contrasenia
+```
   node backup.js export "MyMasterPassword" backup.json
+```
+* Importar Contrasenia
+```
   node backup.js import "MyMasterPassword" backup.json
+```
 
 Keep your .env and any dict files out of version control.
 
@@ -47,7 +75,8 @@ si tienes la misma master password y el mismo "nombre de entrada" (`entry name`)
 ---
 
 ## 📌 Flujo de uso
-
+Esta es una explicacion Grafica de como Funciona este Pasword Mannager.
+```
 ┌───────────────┐
 │Master Password│
 └───────┬───────┘
@@ -68,7 +97,7 @@ Usar en el formulario del sitio
 │ Sitio web hashea y almacena  │
 │ (bcrypt, Argon2, PBKDF2...)  │
 └──────────────────────────────┘
-
+```
 ---
 **Importante:**  
 La contraseña que devuelve el sistema **ya está lista para usarse directamente en el sitio web**.  
@@ -95,6 +124,10 @@ derived: indica que fue generada a partir de tu master password.
 [![Project Status: Actively Maintained](https://img.shields.io/badge/Status-Activo-success.svg)](#)
 --- 
 ### BONUS
+```
+python3 Crack_Aproximation.py
+``` 
+te permite ver cuanto tiempo costaria crackear dicha contrasenia 
 Lo que faltaría para que esto sea “impenetrable”
 - Integrar QKD con tu gestor de contraseñas.
 - Usar One-Time Pads generados por el canal cuántico (cifrado perfecto).
