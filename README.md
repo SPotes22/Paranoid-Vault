@@ -124,10 +124,25 @@ derived: indica que fue generada a partir de tu master password.
 [![Project Status: Actively Maintained](https://img.shields.io/badge/Status-Activo-success.svg)](#)
 --- 
 ### BONUS
+
 ```
 python3 Crack_Aproximation.py
 ``` 
-te permite ver cuanto tiempo costaria crackear dicha contrasenia 
+
+Cómo funciona:
+
+* Detecta qué tipos de caracteres usas (minúsculas, mayúsculas, dígitos, símbolos).
+
+* Calcula el tamaño del charset efectivo.
+
+* Estima la entropía en bits.
+
+* Calcula el tiempo promedio para romperla, dado un número de intentos por segundo (gps).
+
+* Lo devuelve en formato legible (años, días, horas, etc.).
+
+* Con gps = 1e12 (1 billón de intentos por segundo, realista para un atacante con GPUs potentes y ataques offline)
+
 Lo que faltaría para que esto sea “impenetrable”
 - Integrar QKD con tu gestor de contraseñas.
 - Usar One-Time Pads generados por el canal cuántico (cifrado perfecto).
