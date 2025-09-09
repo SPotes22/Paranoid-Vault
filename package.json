@@ -1,0 +1,30 @@
+{
+  "name": "paranoid-vault-patch",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "argon2": "^0.30.0",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.0.0"
+  },
+  "description": "Patch 2.0 -------------------- Gestor de contraseñas por CLI que usa Argon2id y AES para derivación y cifrado. Genera contraseñas únicas y seguras sin necesidad de sincronización en la nube. Ideal para desarrolladores y usuarios que buscan seguridad moderna y control total de sus credenciales. ---- This patch integrates Argon2id-based deterministic password derivation and Argon2-based key derivation/auth. It includes scripts: - initMaster.js - storeEntry.js - getEntry.js - derivePassword.js (uses Argon2id raw) - deriveKey.js (AES key derivation with Argon2id raw) - migrate-to-derivable.js - backup.js - db.js",
+  "main": "backup.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SPotes22/Paranoid-Vault.git"
+  },
+  "keywords": [
+    "password_managger"
+  ],
+  "author": "arachne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SPotes22/Paranoid-Vault/issues"
+  },
+  "homepage": "https://github.com/SPotes22/Paranoid-Vault#readme"
+}
+

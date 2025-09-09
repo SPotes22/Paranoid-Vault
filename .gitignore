@@ -2,7 +2,6 @@ node_modules
 /node_modules/*
 ./node_modules
 *.zip
-*.json
 *.sqlite
 .env
 env
