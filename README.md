@@ -4,9 +4,9 @@ Patch 2.0
 
 --------------------
 
-The CLI-Passworld Managger. 
+The CLI-Passworld Manager. 
 
-This is the user manual for the password mannager witch cover the following scripts:
+This is the user manual for the password manager which covers the following scripts:
 
 NOTE: Argon2id-based deterministic password derivation and Argon2-based key derivation/auth.
 
@@ -104,7 +104,7 @@ No la vuelvas a cifrar ni a hashear antes de ponerla en el formulario, ya que el
 
 **DISCLAIMER**
 The password that Pananoid Returns **Its ready to use directly on the service website** 
-Do not encrypt again before using it on the form, because the service its going to apply their internal hasing process
+Do not encrypt again before using it on the form, because the service is going to apply their internal hashing process.
 ---
 
 ## 📂 Entry Sample
@@ -148,8 +148,8 @@ How it works:
 
 Copyright (C) 2025 Santiago Potes Giraldo
 
-The True Unbreakeable Vault. 
-- Integrate QKD with your password mannager.
+The True Unbreakable Vault. 
+- Integrate QKD with your password manager.
 - Use One-Time Pads generated  by quantum tunneling  (perfect encryption).
-- Rotation of the  key  automaticaly if detects any  alteration on the qubits.
+- Rotation of the  key automatically if it detects any  alteration on the qubits.
 
