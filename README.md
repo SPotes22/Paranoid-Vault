@@ -1,36 +1,155 @@
-**Subject: Strengthen Your Digital Security: Introducing Paranoid Vault, the Password Manager that Empowers You**
+# Paranoid Vault 
 
-Dear users,
+Patch 2.0
 
-In today’s digital world, where data breaches are a constant threat, keeping our credentials secure is crucial. Too often, we rely on weak, reused, or insecurely stored passwords, leaving ourselves vulnerable to exposure.
+--------------------
 
-We present **Paranoid Vault (or “Password Locker — Argon2 Edition”)**, an innovative solution designed to transform your password hygiene and give you unprecedented security.
+The CLI-Passworld Managger. 
 
-**What is Paranoid Vault?**
+This is the user manual for the password mannager witch cover the following scripts:
 
-It’s a command-line (CLI) password manager that lets you generate, manage, and derive unique, robust passwords for each of your services. Unlike other systems, it doesn’t rely on cloud syncing, giving you complete control over your credentials. It utilizes state-of-the-art cryptographic algorithms, such as **Argon2id** **and** **AES,** to ensure your passwords are virtually unbreakable and protected against the most advanced attacks, including GPU-powered brute-force attacks.
+NOTE: Argon2id-based deterministic password derivation and Argon2-based key derivation/auth.
 
-**Why is it crucial for your security?**
+It includes scripts:
 
-1. **Unique, Robust Passwords:** Forget about reusing the same password across multiple sites. Paranoid Vault cryptographically generates strong, unique passwords for each service, removing a massive attack vector.
-
-2. **Deterministic Derivation (no leaks):** Your passwords are derived from your “Master Password” and a specific “entry name” (e.g., “Facebook”). That means your password for a given service is always the same, without being explicitly stored. This eliminates the risk of plain-text password theft from databases.
-
-3. **Simplifies Periodic Password Changes:** While the tool ensures each password is unique and strong, we know updating credentials is also important. Paranoid Vault makes this easy: if you want to change a service password, simply create a new entry (e.g., “Facebook-2024”) and instantly get a fresh, secure password—without the burden of remembering it.
-
-4. **Total Control and Privacy:** As a local tool, your credentials never leave your system. No third-party cloud servers are involved, ensuring your privacy and absolute control.
-
-**What does it do, and how does it raise awareness?**
-
-Paranoid Vault is your personal ally in cybersecurity. It empowers you to adopt best practices by eliminating the excuses for using weak or repeated passwords.
-
-* **Teaches through simplicity:** Shows that managing extremely strong passwords doesn’t have to be complicated.
-
-* **Raises resilience awareness:** By using Argon2id, it introduces you to a security standard that protects against brute-force and dictionary attacks, highlighting the importance of algorithmic robustness.
-
-* **Encourages proactivity:** By making it trivial to generate new unique passwords (whenever you want to rotate or when a service requires it), the tool encourages you to manage your digital security proactively instead of reactively.
-
-**In short, Paranoid Vault isn’t just a password manager; it’s a security philosophy—guiding you toward a safer digital future, where password uniqueness and rotation become a natural, painless part of your routine.**
+- initMaster.js
+- storeEntry.js
+- getEntry.js
+- derivePassword.js (uses Argon2id raw)
+- deriveKey.js (AES key derivation with Argon2id raw)
+- migrate-to-derivable.js
+- backup.js
+- db.js
 
 ---
+
+(OPTIONAL) DOES NOT INCLUDE 
+
+- .env (create your own secret schema)
+
+```
+SECRET_DICT=sol,luna,mar,cafe,brisa,montaña,rio,sombra,fuego,viento,noche,dia,camino,trazo,clave,nexo,puerta,llave,eco,pulso, etc...
+SECRET_BLOCKS=lorem,ipsum,example,supersecret, etc... 
+```
+---
+ 
+#Install
+
+```
+  npm install
+```
+Usage:
+* Init Personal Vault
+```
+  node initMaster.js "MyMasterPassword" 
+``` 
+* Store Passwords
+``` 
+node storeEntry.js "site" "Value" "MyMasterPassword" #simple storage
+node storeEntry.js "site" "value" "MyMasterPassword" --candado   # store encrypted value
+```
+* Custom Password Storage  (ajustable length) 
+```
+  node storeEntry.js "name" "thePassword" "MyMasterPassword" --derivable --site site.example --username user --length 20
+```
+* Print Stored  Passwords
+```
+  node getEntry.js 0 "MyMasterPassword" --list
+```
+* Print Password by id
+```
+  node getEntry.js id "MyMasterPassword"
+```
+* Export your Passwords
+```
+  node backup.js export "MyMasterPassword" backup.json
+```
+* Import Password
+```
+  node backup.js import "MyMasterPassword" backup.json
+```
+
+Keep your .env and any dict files out of version control.
+
+---
+
+## 📌 Flow Chart Of Implementation
+Esta es una explicacion Grafica de como Funciona este Pasword Mannager.
+```
+┌───────────────┐
+│Master Password│
+└───────┬───────┘
+│
+▼
+Argon2id Derivation
+│
+▼
+┌──────────────────────────────┐
+│ Contraseña derivada final    │ ← Ej: "Do4.J#T;-AEudHlo"
+└──────────────────────────────┘
+│
+▼
+Use on the form  website
+│
+▼
+┌──────────────────────────────┐
+│ Sitio web hashea y almacena  │
+│ (bcrypt, Argon2, PBKDF2...)  │
+└──────────────────────────────┘
+```
+---
+**Importante:**  
+La contraseña que devuelve el sistema **ya está lista para usarse directamente en el sitio web**.  
+No la vuelvas a cifrar ni a hashear antes de ponerla en el formulario, ya que el servicio aplicará su propio proceso interno.
+
+**DISCLAIMER**
+The password that Pananoid Returns **Its ready to use directly on the service website** 
+Do not encrypt again before using it on the form, because the service its going to apply their internal hasing process
+---
+
+## 📂 Entry Sample
+```
+{
+  "id": 2,
+  "name": "locker-fb",
+  "derived": true,
+  "password": "Do4.J#T;-AEudHlo"
+}
+```
+name: únique Identifier of the accaunt (Facebook, Gmail, AWS, etc.).
+
+password: final derived password (safe and ready to use).
+
+derived: enables the script to generate a hash based on your master password.
+
+---
+[![License: GPL v3 or later](https://img.shields.io/badge/License-GPLv3+-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Project Status: Actively Maintained](https://img.shields.io/badge/Status-Activo-success.svg)](#)
+--- 
+### BONUS
+
+```
+python3 Crack_Aproximation.py
+``` 
+
+How it works:
+
+* Detects types of caracters using (minus, mayus, dígits, símbols).
+
+* Calculates the size of the effective charset.
+
+* Estimates entropí in bits.
+
+* Calculates the average time to brake, given  a set of numbers and  tries  per second (gps).
+
+* Returns information in a legible output  (Years, Days, Hours, etc.).
+
+* Con gps = 1e12 (1 billón of tries per second, realist aproximation for an atacker with enought resources  (Hihg-end GPUs and  offline atacks)
+
+Copyright (C) 2025 Santiago Potes Giraldo
+
+The True Unbreakeable Vault. 
+- Integrate QKD with your password mannager.
+- Use One-Time Pads generated  by quantum tunneling  (perfect encryption).
+- Rotation of the  key  automaticaly if detects any  alteration on the qubits.
 
