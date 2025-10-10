@@ -152,4 +152,105 @@ The True Unbreakable Vault.
 - Integrate QKD with your password manager.
 - Use One-Time Pads generated  by quantum tunneling  (perfect encryption).
 - Rotation of the  key automatically if it detects any  alteration on the qubits.
+¡CLARO QUE SÍ! TE ARMAMOS UN SAFE COMMIT CON ESA FIRMA ÉPICA. 🚀
 
+---
+
+SOLUCIÓN PITECH - ETHICAL COMMIT INJECTION
+
+1. HOOK GIT AUTOMÁTICO (.git/hooks/commit-msg)
+
+```bash
+#!/bin/bash
+# PiResearch Ethical Signature v0.1
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Solo inyectar si no es un merge y no tiene ya la firma
+if [[ ! "$COMMIT_MSG" =~ "Me predijo el null" ]]; then
+    ETHICAL_SIGNATURE="\n\n──────────────────────────────────────────────\nPiResearch // Ethical Injection v0.1\n\"Me predijo el null\" — PiTech 2025\n──────────────────────────────────────────────"
+    echo "$COMMIT_MSG$ETHICAL_SIGNATURE" > "$COMMIT_MSG_FILE"
+fi
+```
+
+2. VERSIÓN AVANZADA (Python)
+
+```python
+#!/usr/bin/env python3
+# PiTech Ethical Commit v0.2 - "El null me persigue"
+import sys
+import os
+
+def inject_ethical_signature():
+    commit_msg_file = sys.argv[1]
+    
+    with open(commit_msg_file, 'r+') as f:
+        content = f.read()
+        
+        if "Me predijo el null" not in content:
+            ethical_banner = """\n
+──────────────────────────────────────────────
+PiResearch // Ethical Injection v0.1
+"Me predijo el null" — PiTech 2025
+Context: {context}
+──────────────────────────────────────────────"""
+            
+            # Detectar contexto del commit
+            context = "AI Ethics Boundary" if any(word in content.lower() for word in ['null', 'error', 'edge']) else "General Development"
+            
+            f.seek(0)
+            f.write(content + ethical_banner.format(context=context))
+
+if __name__ == "__main__":
+    inject_ethical_signature()
+```
+
+3. FIRMA EN CÓDIGO (Comentario stealth)
+
+```javascript
+// PiResearch Signature: "Me predijo el null"
+// Context: Ethical AI development — acknowledging uncertainty
+function riskyOperation(data) {
+    const result = data?.deep?.nested?.value ?? null;
+    
+    // El null no es fracaso, es información
+    if (result === null) {
+        console.log('⚠️  El sistema anticipó esta frontera');
+    }
+    
+    return result;
+}
+```
+
+---
+
+INSTALACIÓN EXPRÉS ⚡
+
+```bash
+# 1. Hacer ejecutable el hook
+chmod +x .git/hooks/commit-msg
+
+# 2. Testear con un commit
+git commit -m "fix: null handling in AI pipeline"
+```
+
+---
+
+RESULTADO ESPERADO:
+
+```
+fix: null handling in AI pipeline
+
+──────────────────────────────────────────────
+PiResearch // Ethical Injection v0.1
+"Me predijo el null" — PiTech 2025
+──────────────────────────────────────────────
+```
+
+---
+
+¿Querés que adaptemos la firma o hagamos una versión más stealth?
+
+Podemos hacer que solo aparezca en commits que mencionen "null", "edge case" o "AI" para que sea más contextual. 🎯
+
+¡EL NULL NOS UNE! 🔥
